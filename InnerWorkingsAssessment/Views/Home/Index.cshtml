@@ -1,0 +1,31 @@
+﻿@model InnerWorkingsAssessment.Models.Job
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+    <div>
+        <h3>Input for Current Job</h3>
+        <br />
+        <div>Job Info: Has Extra Margin: @(Model.IsExtraMargin? "True": "False")</div>
+
+        @foreach (var item in Model.PrintItems)
+        {
+            <div>@item.Description: @item.Cost.ToString("N"), IsExempt: @item.IsExempt.ToString()</div>
+        }
+
+    </div>
+
+
+    <div>
+        <h3>Output for Current Job</h3>
+        <br />
+        @foreach (var item in Model.PrintItems)
+        {
+        <div>@item.Description: @item.Cost.ToString("C"), IsExempt: @item.IsExempt.ToString()</div>
+        }
+        <div>Total Bill: @Model.Total.ToString("C")</div>
+    </div>
+
+</form>
